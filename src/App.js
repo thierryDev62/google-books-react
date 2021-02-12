@@ -1,8 +1,6 @@
 import Search from "./components/Search";
 import ResultTable from "./components/ResultTable";
 import {useState} from "react";
-import TableResult from "./components/TableResult";
-import { columns, title } from "./components/data";
 
 function App() {
     const [resultSearch, setResultSearch] = useState([]);
@@ -14,8 +12,6 @@ function App() {
         </div>
         <Search setResultSearch={setResultSearch} />
         <ResultTable resultSearch={resultSearch} />
-
-        <TableResult title={title} columns={columns} />
     </div>
   );
 }
