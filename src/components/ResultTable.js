@@ -10,7 +10,7 @@ const ResultTable = ({resultSearch}) => {
             <div className="row mt-5">
                 <table className="table table-responsive table-success table-striped">
                     <thead>
-                    <tr>
+                    <tr className="text-center" style={{verticalAlign: 'middle'}}>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         <th scope="col">Author(s)</th>
