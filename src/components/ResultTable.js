@@ -56,7 +56,7 @@ const ResultTable = ({resultSearch}) => {
                             }
                                      alt="{book.volumeInfo.title}"/></td>
                             <td className="text-center">{book.volumeInfo.language}</td>
-                            <td><button className="btn btn-secondary shadow-lg">Info</button></td>
+                            <td><a href={book.volumeInfo.infoLink} target="_blank" rel="noreferrer noopener"><div className="btn btn-secondary shadow-lg">Info</div></a></td>
                         </tr>
                     ))}
                     </tbody>
