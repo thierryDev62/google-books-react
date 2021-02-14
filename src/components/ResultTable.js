@@ -4,7 +4,9 @@ import noCover from '../images/no-cover.jpg';
 import Pagination from "./Pagination";
 import Spinner from "./Spinner";
 
-const ResultTable = ({resultSearch, spinnerActive={spinnerActive}}) => {
+const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, setOffset}) => {
+
+    const slice = resultSearch.slice(offset, offset + perPage);
 
     return (
         <>
@@ -16,7 +18,6 @@ const ResultTable = ({resultSearch, spinnerActive={spinnerActive}}) => {
             {resultSearch ?
                 resultSearch.length !== 0 &&
                 <div className="row mt-5">
-
                     <table className="table table-responsive table-success table-striped">
                         <thead>
                         <tr className="text-center" style={{verticalAlign: 'middle'}}>
@@ -33,7 +34,7 @@ const ResultTable = ({resultSearch, spinnerActive={spinnerActive}}) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {resultSearch.map(book => (
+                        {slice.map(book => (
                             <tr key={book.id}>
                                 <td>{book.volumeInfo.title && book.volumeInfo.title.length > 200 ? book.volumeInfo.title.substr(0, 200) + ' (...)' : book.volumeInfo.title}</td>
                                 <td>{book.volumeInfo.description && book.volumeInfo.description.length > 200 ? book.volumeInfo.description.substr(0, 200) + ' (...)' : book.volumeInfo.description}</td>
@@ -80,8 +81,14 @@ const ResultTable = ({resultSearch, spinnerActive={spinnerActive}}) => {
                         </div>
                     </div>
                 </div>}
-            <div className="row">
-                <Pagination />
+            <div className="row my-3">
+                {
+                    slice.length !== 0 && <Pagination
+                        pageCount={pageCount}
+                        perPage={perPage}
+                        setOffset={setOffset}
+                    />
+                }
             </div>
         </>
     );
