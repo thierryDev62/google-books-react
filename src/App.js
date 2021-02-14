@@ -8,14 +8,20 @@ function App() {
     const [resultSearch, setResultSearch] = useState([]);
     const [spinnerActive, setSpinnerActive] = useState(false);
 
+    const [offset, setOffset] = useState(0);
+    const [perPage] = useState(10);
+    const [pageCount, setPageCount] = useState(0);
+
     const handleClickSearch = () => {
         if (searchValue !== '') {
             setSpinnerActive(true);
             axios
                 .get(`https://www.googleapis.com/books/v1/volumes?q=${searchValue}&maxResults=40`)
                 .then((response) => {
-                    setResultSearch(response.data.items);
+                    const data = response.data.items;
+                    setResultSearch(data);
                     setSpinnerActive(false);
+                    setPageCount(Math.ceil(data.length / perPage))
                 })
                 .catch(() => {
                     console.log("Oops, request failed! Please try later...");
@@ -40,7 +46,15 @@ function App() {
                 handleClickSearch={handleClickSearch}
             />
             <ResultTable
-                resultSearch={resultSearch} spinnerActive={spinnerActive} />
+                resultSearch={resultSearch}
+                spinnerActive={spinnerActive}
+                offset={offset}
+                setOffset={setOffset}
+                perPage={perPage}
+                pageCount={pageCount}
+                setPageCount={setPageCount}
+
+            />
         </div>
     );
 }
