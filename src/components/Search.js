@@ -10,7 +10,6 @@ const Search = ({setResultSearch}) => {
     }
 
     const handleClickSearch = () => {
-
         if(searchValue !== '') {
             axios
                 .get("https://www.googleapis.com/books/v1/volumes?q=" + searchValue + "&maxResults=40")
