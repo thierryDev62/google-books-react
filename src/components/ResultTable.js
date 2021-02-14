@@ -8,6 +8,8 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
 
     const slice = resultSearch.slice(offset, offset + perPage);
 
+    console.log(slice);
+
     return (
         <>
             <div className="row mt-5 justify-content-center">
@@ -15,8 +17,8 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                     <Spinner spinnerActive={spinnerActive}/>
                 </div>
             </div>
-            {resultSearch ?
-                resultSearch.length !== 0 &&
+            {slice ?
+                slice.length !== 0 &&
                 <div className="row mt-5">
                     <table className="table table-responsive table-success table-striped">
                         <thead>
@@ -47,7 +49,7 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                                 </td>
                                 <td>{book.volumeInfo.publisher}</td>
                                 <td>{
-                                    Moment(book.volumeInfo.publishedDate)
+                                    Moment(new Date(book.volumeInfo.publishedDate))
                                         .format('YYYY')
                                 }
                                 </td>
@@ -73,14 +75,18 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                         ))}
                         </tbody>
                     </table>
-                </div> :
+                </div>
+                :
+                //TODO: fix this bug
                 <div className="row justify-content-center">
                     <div className="col-6">
                         <div className="alert alert-danger mt-3 text-center fw-bold" role="alert">
                             Sorry no result!
                         </div>
                     </div>
-                </div>}
+                </div>
+            }
+
             <div className="row my-3">
                 {
                     slice.length !== 0 && <Pagination
