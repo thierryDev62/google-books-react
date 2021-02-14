@@ -6,9 +6,7 @@ import Spinner from "./Spinner";
 
 const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, setOffset}) => {
 
-    const slice = resultSearch.slice(offset, offset + perPage);
-
-    console.log(slice);
+    const slice = resultSearch && resultSearch.slice(offset, offset + perPage);
 
     return (
         <>
@@ -19,6 +17,7 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
             </div>
             {slice ?
                 slice.length !== 0 &&
+                <>
                 <div className="row mt-5">
                     <table className="table table-responsive table-success table-striped">
                         <thead>
@@ -76,8 +75,17 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                         </tbody>
                     </table>
                 </div>
+                <div className="row my-3">
+                    {
+                        <Pagination
+                            pageCount={pageCount}
+                            perPage={perPage}
+                            setOffset={setOffset}
+                        />
+                    }
+                </div>
+                </>
                 :
-                //TODO: fix this bug
                 <div className="row justify-content-center">
                     <div className="col-6">
                         <div className="alert alert-danger mt-3 text-center fw-bold" role="alert">
@@ -86,16 +94,6 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                     </div>
                 </div>
             }
-
-            <div className="row my-3">
-                {
-                    slice.length !== 0 && <Pagination
-                        pageCount={pageCount}
-                        perPage={perPage}
-                        setOffset={setOffset}
-                    />
-                }
-            </div>
         </>
     );
 };
