@@ -3,11 +3,7 @@ import Moment from 'moment';
 import noCover from '../images/no-cover.jpg';
 import Pagination from "./Pagination";
 
-const ResultTable = ({resultSearch, offset, perPage}) => {
-    const [data, setData] = useState([]);
-    const slice = resultSearch.slice(offset, offset + perPage)
-
-    console.log(slice)
+const ResultTable = ({resultSearch}) => {
 
     return (
         <>

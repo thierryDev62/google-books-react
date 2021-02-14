@@ -1,25 +1,9 @@
-import React, {useState} from 'react';
-import axios from "axios";
+import React from 'react';
 
-const Search = ({setResultSearch}) => {
-
-    const [searchValue, setSearchValue] = useState('');
+const Search = ({setSearchValue, handleClickSearch}) => {
 
     const handleChange = (value) => {
         setSearchValue(value);
-    }
-
-    const handleClickSearch = () => {
-        if(searchValue !== '') {
-            axios
-                .get("https://www.googleapis.com/books/v1/volumes?q=" + searchValue + "&maxResults=40")
-                .then((response) => {
-                    setResultSearch(response.data.items);
-                })
-                .catch(() => {
-                    console.log("Oops, request failed! Please try later...");
-                });
-        }
     }
 
     const handlePwdKeyUp = (e) => {
