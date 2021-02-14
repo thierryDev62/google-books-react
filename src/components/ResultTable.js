@@ -1,15 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Moment from 'moment';
 import noCover from '../images/no-cover.jpg';
 import Pagination from "./Pagination";
+import Spinner from "./Spinner";
 
-const ResultTable = ({resultSearch}) => {
+const ResultTable = ({resultSearch, spinnerActive={spinnerActive}}) => {
 
     return (
         <>
+            <div className="row mt-5 justify-content-center">
+                <div className="col-2">
+                    <Spinner spinnerActive={spinnerActive}/>
+                </div>
+            </div>
             {resultSearch ?
                 resultSearch.length !== 0 &&
                 <div className="row mt-5">
+
                     <table className="table table-responsive table-success table-striped">
                         <thead>
                         <tr className="text-center" style={{verticalAlign: 'middle'}}>
@@ -73,10 +80,10 @@ const ResultTable = ({resultSearch}) => {
                         </div>
                     </div>
                 </div>}
-                <div className="row">
-                    <Pagination />
-                </div>
-    </>
+            <div className="row">
+                <Pagination />
+            </div>
+        </>
     );
 };
 
