@@ -3,18 +3,20 @@ import ReactPaginate from 'react-paginate';
 const Pagination = ({pageCount, perPage, setOffset}) => {
 
     const handlePageClick = (e) => {
-        const selectedPage = e.selected;
-        console.log(selectedPage)
-        setOffset(selectedPage * perPage);
+        setTimeout(() => {
+            const selectedPage = e.selected;
+            setOffset(selectedPage * perPage);
+        }, 500);
+        window.scrollTo({top: 0, left:0, behavior: "smooth"})
     };
 
     return (
         <div>
             <ReactPaginate
                 previousLinkClassName={"page-link"}
-                previousLabel={"préc"}
+                previousLabel={"prev"}
                 nextLinkClassName={"page-link"}
-                nextLabel={"suiv"}
+                nextLabel={"next"}
                 breakLabel={"..."}
                 breakClassName={"page-link"}
                 pageCount={pageCount}
