@@ -20,7 +20,9 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
+.btn.active,
+.pagination > .active > a,
+.pagination > li > a
 {
     outline:0 !important;
     -webkit-appearance:none;
@@ -41,4 +43,34 @@ label:focus,
 #search:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+
+.pagination > li > a
+{
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: #dfd9d1;
+    background-color: #212529 !Important;
+    border: solid 1px #212529 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #212529 !Important;
+    border: solid 1px #212529;
 }
