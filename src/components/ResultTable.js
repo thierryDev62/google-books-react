@@ -1,5 +1,6 @@
 import React, {useRef} from 'react';
 import Moment from 'moment';
+import dayjs from "dayjs";
 import noCover from '../images/no-cover.jpg';
 import Pagination from "./Pagination";
 import Spinner from "./Spinner";
@@ -48,7 +49,7 @@ const ResultTable = ({resultSearch, spinnerActive, perPage, pageCount, offset, s
                                     </td>
                                     <td>{book.volumeInfo.publisher}</td>
                                     <td>{
-                                        Moment(new Date(book.volumeInfo.publishedDate))
+                                        dayjs(new Date(book.volumeInfo.publishedDate))
                                             .format('YYYY')
                                     }
                                     </td>
